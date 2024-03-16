@@ -19,37 +19,37 @@ class Solution
        int end = n - 1;
       
        
-       if(n==0){
-           return n;
-       }
+    //   if(n==0){
+    //       return n;
+    //   }
        
        
-       while(start < end){
-          int  mid = start + (end - start)/2;
-           if(arr[mid] > arr[mid+1]){
-               end = mid;
-           }
-           else {
-               start = mid + 1;
-           }
-       }
-       return start;
+    //   while(start < end){
+    //       int  mid = start + (end - start)/2;
+    //       if(arr[mid] > arr[mid+1]){
+    //           end = mid;
+    //       }
+    //       else {
+    //           start = mid + 1;
+    //       }
+    //   }
+    //   return start;
        
         //for finding the index of highest element
-        //   while(start <= end){
-        //       mid = start + (end - start)/2;
-        //       if(arr[mid] > arr[end] && arr[mid] > arr[start]){
-        //           return mid;
-        //       }
+          while(start <= end){
+              int mid = end + (start - end)/2;
+              if(arr[mid] > arr[mid+1] && arr[mid] > arr[mid-1]){
+                  return mid;
+              }
                
-        //       else if(arr[mid] > arr[start]){
-        //           start = mid + 1;
-        //       }
+              else if(arr[mid] > arr[mid-1]){
+                  start = mid + 1;
+              }
                
-        //       else {
-        //           end = mid - 1;
-        //       }
-        //   }
+              else {
+                  end = mid - 1;
+              }
+          }
     }
 };
 
