@@ -11,34 +11,31 @@ class Solution{
   public:
     long long int floorSqrt(long long int x) 
     {
-        // Your code goes here  
-        if(x < 2){
-            return x;
-        }
-        
+        // Your code goes here   
         long long int start = 0;
         long long int end = x;
         long long int mid;
-        long long int index = -1 ;
         
-        while(start <= end) {
-            
+        long long int ans = floor(sqrt(x));
+        
+        while(start <= end){
             mid = start + (end - start)/2;
             
-            if(mid * mid == x){
+            if(mid*mid == x){
                 return mid;
             }
-            else if(mid * mid < x){
-                index = mid;
-                start = mid + 1 ;
+            
+            else if(mid*mid < x){
+                start = mid + 1;
             }
             
             else {
                 end = mid - 1;
-                
             }
         }
-        return index;
+        
+        return ans;
+        
     }
 };
 
