@@ -7,20 +7,26 @@ class Solution{
 public:
     int findMin(int arr[], int n){
         //complete the function here
-        int start = 0, end = n-1, mid , temp = arr[0];
-        
+        int start = 0;
+        int end = n-1;
+        int ans = arr[0];
+
         while(start <= end){
-            mid = start + (end - start)/2;
-           
-           if(arr[mid] >= arr[0]){
-               start = mid + 1;
-           }
-           else {
-                temp = arr[mid];
-                end = mid -1;
-           }
+            int mid = start + (end - start)/2;
+
+            if(arr[mid] < arr[0] && arr[mid] < arr[mid-1]){
+                return arr[mid];
+            }
+
+            else if(arr[mid] < arr[0]){
+               end = mid - 1;
+               ans = arr[mid];
+            }
+            else {
+                start = mid + 1;
+            }
         }
-       return temp;
+        return ans;
     }
 };
 
