@@ -8,26 +8,42 @@ using namespace std;
 class Solution
 {
     public:
+    
     //Function to find the maximum number of cuts.
-    int solve(int n, int x, int y, int z, vector<int>&dp) {
-        if(n==0) return 0;
-        if(dp[n] != -1) return dp[n];
-        int op1 = INT_MIN, op2 = INT_MIN, op3 = INT_MIN;
-        if(n>=x) op1 = solve(n-x,x,y,z,dp);
-        if(n>=y) op2 = solve(n-y,x,y,z,dp);
-        if(n>=z) op3 = solve(n-z,x,y,z,dp);
-        dp[n] = 1 + max(op1,max(op2,op3));
-        return dp[n];
+    int func(int n, int x, int y, int z, vector<int> &arr){
+        if(n==0){
+            return 0;
+        }
+        if(arr[n] != -1){
+            return arr[n];
+        }
+        int val1 = INT_MIN;
+        int val2 = INT_MIN;
+        int val3 = INT_MIN;
+        
+        if(n>=x){
+            val1 = func(n-x,x,y,z,arr);
+        }
+        if(n>=y){
+            val2 = func(n-y,x,y,z,arr);
+        }
+        if(n>=z){
+            val3 = func(n-z,x,y,z,arr);
+        }
+        arr[n] = 1+max(val1, max(val2,val3));
+        return arr[n];
     }
+    
     int maximizeTheCuts(int n, int x, int y, int z)
     {
-        vector<int>dp(n+1,-1);
-        int ans = solve(n,x,y,z,dp);
-        if(ans < 0) return 0;
+        //Your code here
+        vector<int>arr(n+1, -1);
+        int ans = func(n,x,y,z,arr);
+        if(ans<0){
+            return 0;
+        }
         return ans;
     }
-
-
 };
 
 //{ Driver Code Starts.
