@@ -11,8 +11,43 @@ using namespace std;
 class Solution {
   public:
     vector<int> getFloorAndCeil(int x, vector<int> &arr) {
-        // code here
-        int i=INT_MIN;
+        
+        // IF SORTED THEN THIS
+//         int n=arr.size();
+//         // code here
+//         int i = -1, j = -1;
+// 	 int start = 0; 
+// 	 int end = n-1;
+
+// 	 while(start <= end){
+// 		int mid = start + (end - start)/2;
+
+// 		if(arr[mid] >= x){
+// 			i = arr[mid];
+// 			end = mid -1;
+// 		}
+// 		else {
+// 			start = mid + 1;
+// 		}
+// 	 }
+
+// 	  start = 0; 
+// 	 end = n-1;
+
+// 	 while(start <= end){
+// 		int mid = start + (end - start)/2;
+
+// 		if(arr[mid] <= x){
+// 			j = arr[mid];
+// 			start = mid + 1;
+// 		}
+// 		else {
+// 			end = mid -1;
+// 		}
+// 	 }
+// 	 return {j,i};
+
+    int i=INT_MIN;
         int j = INT_MAX;
         for(int k=0; k<arr.size(); k++){
             if(arr[k] >= x && arr[k] <= j){
