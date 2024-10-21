@@ -49,22 +49,47 @@ class Solution {
     // Function to find the length of a loop in the linked list.
     int countNodesinLoop(Node *head) {
         // Code here
-        unordered_map <Node*, int> mpp;
-        int count = 0;
-        Node* temp = head;
-        int value = 0;
-        while(temp){
-            if(mpp.find(temp) != mpp.end()){
-                value = mpp[temp];
-                return count - mpp[temp];
-            }
+        // unordered_map <Node*, int> mpp;
+        // int count = 0;
+        // Node* temp = head;
+        // int value = 0;
+        // while(temp){
+        //     if(mpp.find(temp) != mpp.end()){
+        //         value = mpp[temp];
+        //         return count - mpp[temp];
+        //     }
             
-            mpp[temp] = count;
-            count++;
-            temp = temp->next;
+        //     mpp[temp] = count;
+        //     count++;
+        //     temp = temp->next;
+        // }
+        // return value;
+        
+        
+        Node* slow = head;
+        Node* fast = head;
+        
+        while(fast && fast->next){
+            slow = slow->next;
+            fast = fast->next->next;
+            
+            if(slow == fast){
+                return findlength(slow, fast);
+            }
         }
-        return value;
+        return 0;
+        
     }
+    
+    int findlength(Node* slow , Node* fast){
+            int ans = 1;
+            fast = fast->next;
+            while(slow != fast){
+                ans++;
+                fast = fast->next;
+            }
+            return ans;
+        }
 };
 
 //{ Driver Code Starts.
