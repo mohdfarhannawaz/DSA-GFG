@@ -32,6 +32,7 @@ void loopHere(Node *head, Node *tail, int position) {
 
 
 // } Driver Code Ends
+
 /*
 
 struct Node {
@@ -49,48 +50,36 @@ class Solution {
     // Function to find the length of a loop in the linked list.
     int countNodesinLoop(Node *head) {
         // Code here
-        // unordered_map <Node*, int> mpp;
-        // int count = 0;
-        // Node* temp = head;
-        // int value = 0;
-        // while(temp){
-        //     if(mpp.find(temp) != mpp.end()){
-        //         value = mpp[temp];
-        //         return count - mpp[temp];
-        //     }
-            
-        //     mpp[temp] = count;
-        //     count++;
-        //     temp = temp->next;
-        // }
-        // return value;
         
+        if(head == NULL || head->next == NULL){
+            return NULL;
+        }
         
         Node* slow = head;
         Node* fast = head;
         
-        while(fast && fast->next){
+        
+        while(fast != NULL && fast->next != NULL){
             slow = slow->next;
             fast = fast->next->next;
             
             if(slow == fast){
-                return findlength(slow, fast);
-            }
-        }
-        return 0;
-        
-    }
-    
-    int findlength(Node* slow , Node* fast){
-            int ans = 1;
-            fast = fast->next;
-            while(slow != fast){
-                ans++;
+                
                 fast = fast->next;
+                int count = 1;
+                while (fast != slow){
+                    fast = fast -> next;
+                    count++;
+                }
+                return count;
+                
             }
-            return ans;
         }
+        
+        return 0;
+    }
 };
+
 
 //{ Driver Code Starts.
 
