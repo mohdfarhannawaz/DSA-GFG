@@ -14,49 +14,48 @@ class Solution{
     int catchThieves(char arr[], int n, int k) 
     {
         // Code here 
-        int p = 0;
-        int t = 0;
-        int ans = 0;
+        int police = 0;
+        int thief = 0;
+        int distance = 0;
         
-        while(p<n && t<n){
-            while(p<n && arr[p]!='P'){
-                p++;
+        while(police < n && thief < n){
+            while(police<n && arr[police]!='P'){
+                police++;
             }
-            while(t<n && arr[t]!='T'){
-                t++;
+            while(thief<n && arr[thief]!='T'){
+                thief++;
             }
             
-            while(p<n && t<n){
-                if(abs(p-t) <= k){
-                    ans++;
-                    p++;
-                    
-                    while(p<n && arr[p]!='P'){
-                        p++;
+            while(thief<n && police<n){
+                if(abs(police - thief) <= k){
+                    distance++;
+                    police++;
+                    while(police<n && arr[police] != 'P'){
+                        police++;
                     }
-                    t++;
-                    while(t<n && arr[t]!='T'){
-                        t++;
+                    thief++;
+                    while(thief<n && arr[thief]!='T'){
+                        thief++;
                     }
                 }
-                else {
-                    if(p<t){
-                        p++;
-                        
-                        while(p<n && arr[p]!='P'){
-                            p++;
+                else{
+                    if(police < thief){
+                        police++;
+                        while(police<n && arr[police] != 'P'){
+                            police++;
                         }
                     }
                     else{
-                        t++;
-                        while(t<n && arr[t]!='T'){
-                            t++;
+                        thief++;
+                        while(thief<n && arr[thief]!='T'){
+                            thief++;
                         }
                     }
                 }
+                
             }
         }
-        return ans;
+        return distance;
     }
 };
 
